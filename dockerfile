@@ -13,11 +13,14 @@ COPY ./client/package*.json ./client/
 # Install the dependencies for the React app
 RUN cd client && npm install
 
-# compy client files to the container
+# copy client files to the container
 COPY ./client/ ./client/
 
 # Build the React app
 RUN cd client && npm run build
+
+# run post build commands
+RUN cd client && npm run post-build
 
 # Copy the entire project directory to the container
 COPY ./server .
