@@ -84,6 +84,7 @@ cd /root/production/
 echo "Starting the server and the database"
 
 # turn of previous container to save resource
+
 docker-compose down
 
 docker-compose up -d --build
