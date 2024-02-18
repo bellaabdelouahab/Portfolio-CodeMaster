@@ -65,6 +65,11 @@ git --work-tree=/root/production/ --git-dir=/root/production/.git checkout -f
 
 cd /root/production
 
+# turn of previous container to save resource
+
+docker-compose down
+
+
 # updating submodules
 git --work-tree=/root/production/ --git-dir=/root/production/.git submodule update --init --recursive
 
@@ -83,9 +88,6 @@ cd /root/production/
 
 echo "Starting the server and the database"
 
-# turn of previous container to save resource
-
-docker-compose down
 
 docker-compose up -d --build
 
@@ -100,3 +102,5 @@ echo "Deployed successfully"
 ' > /root/production/.git/hooks/post-receive
 
 chmod a+x /root/production/.git/hooks/post-receive
+
+# done
