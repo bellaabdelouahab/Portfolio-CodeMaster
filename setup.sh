@@ -77,6 +77,13 @@ echo "Installing dependencies and building the react app"
 
 cd /root/production/client
 npm install
+
+# Update the REACT_APP_BACKEND_API variable
+sed -i "s|REACT_APP_BACKEND_API = .*|REACT_APP_BACKEND_API = http://46.101.84.142:8000/api|" /root/production/client/.env
+
+# Update the REACT_APP_BACKEND_UPLOADS_API variable
+sed -i "s|REACT_APP_BACKEND_UPLOADS_API = .*|REACT_APP_BACKEND_UPLOADS_API = http://46.101.84.142/|" /root/production/client/.env
+
 npm run build
 
 echo "serving react app"
