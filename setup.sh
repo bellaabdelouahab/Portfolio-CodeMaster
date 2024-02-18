@@ -65,7 +65,7 @@ git --work-tree=/root/production/ --git-dir=/root/production/.git checkout -f
 
 cd /root/production
 
-# turn of previous container to save resource
+echo "turn of previous container to save resource"
 
 docker-compose down
 
