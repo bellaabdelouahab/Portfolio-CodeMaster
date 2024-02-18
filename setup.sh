@@ -66,14 +66,7 @@ git --work-tree=/root/production/ --git-dir=/root/production/.git checkout -f
 cd /root/production
 
 # updating submodules
-git submodule update --init --recursive
-
-
-
-echo "Build the docker-compose"
-
-docker-compose up -d --build
-
+git --work-tree=/root/production/ --git-dir=/root/production/.git submodule update --init --recursive
 
 echo "Installing dependencies and building the react app"
 
@@ -86,7 +79,17 @@ echo "serving react app"
 # copy the build folder to the nginx directory
 cp -r /root/production/client/build /var/www/html
 
-echo "Restarting Server"
+cd /root/production/
+
+echo "Starting the server and the database"
+
+# turn of previous container to save resource
+docker-compose down
+
+docker-compose up -d --build
+
+
+echo "Restarting the pm2 process manager to serve the server and the database"
 
 pm2 restart all
 
@@ -96,6 +99,3 @@ echo "Deployed successfully"
 ' > /root/production/.git/hooks/post-receive
 
 chmod a+x /root/production/.git/hooks/post-receive
-
-
-
