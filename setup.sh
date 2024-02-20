@@ -1,8 +1,13 @@
 apt update
 apt install nginx
 echo 'server {
-    listen 80;
 
+    listen               443 ssl;
+
+    ssl_certificate      /etc/ssl/cert.crt;
+    ssl_certificate_key  /etc/ssl/private.key;
+
+    server_name codemaster.ninja;
 
     root /var/www/html/build;
     index index.html;
@@ -16,6 +21,11 @@ echo 'server {
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
+}
+server {
+    listen 80;
+    server_name codemaster.ninja
+    return 301 https://$server_name$request_uri;
 }
 ' > /etc/nginx/sites-enabled/app
 
