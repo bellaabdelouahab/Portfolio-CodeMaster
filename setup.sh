@@ -17,14 +17,14 @@ echo 'server {
     }
 
     location /api {
-        proxy_pass http://localhost:8000;
+        proxy_pass http://localhost:8000/api;
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
 server {
     listen 80;
-    server_name codemaster.ninja
+    server_name codemaster.ninja;
     return 301 https://$server_name$request_uri;
 }
 ' > /etc/nginx/sites-enabled/app
