@@ -21,6 +21,12 @@ echo 'server {
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
+
+    location /uploads {
+        proxy_pass http://localhost:8000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
 }
 server {
     listen 80;
@@ -92,6 +98,8 @@ npm run build
 
 echo "serving react app"
 
+rm -r /var/www/html/build
+
 # copy the build folder to the nginx directory
 cp -r /root/production/client/build /var/www/html
 
@@ -100,7 +108,7 @@ cd /root/production/
 echo "Starting the server and the database"
 
 
-docker-compose up -d --build
+docker-compose up -d --build production-backend-api
 
 
 echo "Restarting the pm2 process manager to serve the server and the database"
