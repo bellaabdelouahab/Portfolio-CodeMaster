@@ -108,7 +108,7 @@ cd /root/production/
 echo "Starting the server and the database"
 
 
-docker-compose up -d --build production-backend-api-1
+docker-compose up -d --build
 
 
 echo "Restarting the pm2 process manager to serve the server and the database"
