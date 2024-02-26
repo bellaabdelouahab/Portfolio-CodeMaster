@@ -108,7 +108,8 @@ cd /root/production/
 echo "Starting the server and the database"
 
 
-docker-compose up -d --build
+docker-compose build
+docker-compose up -d
 
 
 echo "Restarting the pm2 process manager to serve the server and the database"
