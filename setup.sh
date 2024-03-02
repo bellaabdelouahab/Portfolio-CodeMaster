@@ -43,7 +43,7 @@ systemctl enable nginx
 
 ufw allow 'Nginx HTTP'
 
-nginx -t
+nginx -t 
 
 
 # install git
