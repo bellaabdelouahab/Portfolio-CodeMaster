@@ -83,6 +83,9 @@ cd /root/production
 
 echo "turn of previous container to save resource"
 
+# copy the folder /app/public from the container to the host
+docker cp $(docker ps -aqf "name=production-backend-api-1"):/app/public /root/production/server/public
+
 docker-compose down
 
 
