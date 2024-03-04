@@ -83,7 +83,7 @@ cd /root/production
 
 
 echo "copy the folder /app/public from the container to the host" # note the service name in docker-compose is backend-api
-docker cp $(docker-compose ps -q backend-api):/app/public /root/production/client/public
+docker cp $(docker-compose ps -q backend-api):/app/public /root/production/server/
 
 echo "turn of previous container to save resource"
 docker-compose down
