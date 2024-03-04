@@ -82,8 +82,8 @@ git --work-tree=/root/production/ --git-dir=/root/production/.git checkout -f
 cd /root/production
 
 
-echo "copy the folder /app/public from the container to the host"
-docker cp $(docker ps -aqf "name=production-backend-api-1"):/app/public /root/production/server/public
+echo "copy the folder /app/public from the container to the host" # note the service name in docker-compose is backend-api
+docker cp $(docker-compose ps -q backend-api):/app/public /root/production/client/public
 
 echo "turn of previous container to save resource"
 docker-compose down
