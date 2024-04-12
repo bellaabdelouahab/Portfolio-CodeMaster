@@ -90,6 +90,7 @@ docker-compose down
 
 
 # updating submodules
+# make sure the repo is public
 git --work-tree=/root/production/ --git-dir=/root/production/.git submodule update --init --recursive
 
 echo "Installing dependencies and building the react app"
