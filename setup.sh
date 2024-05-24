@@ -33,6 +33,19 @@ server {
     server_name codemaster.ninja;
     return 301 https://$server_name$request_uri;
 }
+
+
+# server {
+#     listen 80;
+#     server_name codemaster.ninja www.codemaster.ninja;
+
+#     location /.well-known/pki-validation/9A3F49391A832F65DCDD309416EC0E63.txt {
+#         alias /var/www/9A3F49391A832F65DCDD309416EC0E63.txt;
+#     }
+
+    # Other server configurations...
+# }
+
 ' > /etc/nginx/sites-enabled/app
 
 unlink /etc/nginx/sites-enabled/default
